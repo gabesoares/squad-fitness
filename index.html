@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squad Fitness Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <h1>squad fitness</h1>
+      <p id="week-range">loading week...</p>
+    </div>
+    <div class="header-right">
+      <div class="week-chip">
+        <span class="chip-label">pace target</span>
+        <span class="chip-val" id="pace-target">—</span>
+        <span class="chip-label">min</span>
+      </div>
+      <div class="sync-status" id="sync-status">
+        <span class="dot"></span> live
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV TABS -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="this-week">this week</button>
+    <button class="tab" data-tab="history">history</button>
+    <button class="tab" data-tab="records">records</button>
+  </nav>
+
+  <!-- ═══════ TAB: THIS WEEK ═══════ -->
+  <div id="tab-this-week" class="tab-content active">
+
+    <div class="section-label">standings</div>
+    <div class="squad-grid" id="squad-grid">
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+      <div class="skeleton-card"></div>
+    </div>
+
+    <div class="section-label">log a workout</div>
+    <div class="log-panel">
+      <div class="log-form">
+        <div class="form-group">
+          <label>who</label>
+          <select id="log-who">
+            <option value="0">Alex</option>
+            <option value="1">Sam</option>
+            <option value="2">Jordan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>activity</label>
+          <select id="log-activity">
+            <option>Run</option>
+            <option>Walk</option>
+            <option>Cycle</option>
+            <option>Swim</option>
+            <option>HIIT</option>
+            <option>Gym</option>
+            <option>Yoga</option>
+            <option>Hike</option>
+            <option>Sport</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>active minutes</label>
+          <input type="number" id="log-mins" min="1" max="600" value="30" placeholder="30">
+        </div>
+        <div class="form-group">
+          <label>date (optional)</label>
+          <input type="date" id="log-date">
+        </div>
+        <div class="log-btn-wrap">
+          <button class="log-btn" id="log-btn" onclick="logWorkout()">+ log it</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-label">leaderboard</div>
+        <div class="leaderboard" id="leaderboard"></div>
+      </div>
+      <div>
+        <div class="section-label">recent activity</div>
+        <div class="feed-panel" id="feed-panel"></div>
+      </div>
+    </div>
+
+    <div class="section-label">sync your device</div>
+    <div class="sync-grid">
+      <div class="sync-card">
+        <div class="sync-name" style="color:var(--yellow)">Alex</div>
+        <div class="sync-devices">📱 Android &nbsp;·&nbsp; ⌚ Garmin</div>
+        <div class="sync-how">Open <strong>Garmin Connect</strong> → Health Stats → Intensity Minutes. Check weekly total and log it here.</div>
+      </div>
+      <div class="sync-card">
+        <div class="sync-name" style="color:var(--teal)">Sam</div>
+        <div class="sync-devices">📱 iPhone &nbsp;·&nbsp; ⌚ Apple Watch</div>
+        <div class="sync-how">Open <strong>Fitness app</strong> → Summary → Exercise Minutes. Or Apple Health → Browse → Activity → Exercise Minutes → Week.</div>
+      </div>
+      <div class="sync-card">
+        <div class="sync-name" style="color:var(--purple)">Jordan</div>
+        <div class="sync-devices">📱 iPhone &nbsp;·&nbsp; ⌚ Fitbit</div>
+        <div class="sync-how">Open <strong>Fitbit app</strong> → Today → Active Zone Minutes. Your weekly AZM = active minutes.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════ TAB: HISTORY ═══════ -->
+  <div id="tab-history" class="tab-content">
+    <div class="section-label">weekly history</div>
+    <div id="history-chart-wrap">
+      <canvas id="history-chart" role="img" aria-label="Weekly active minutes history for each squad member"></canvas>
+    </div>
+    <div id="history-table-wrap">
+      <div id="history-table"></div>
+    </div>
+  </div>
+
+  <!-- ═══════ TAB: RECORDS ═══════ -->
+  <div id="tab-records" class="tab-content">
+    <div class="section-label">fun facts &amp; records</div>
+    <div class="records-grid" id="records-grid"></div>
+
+    <div class="section-label" style="margin-top:2rem">activity breakdown</div>
+    <div class="activity-grid" id="activity-grid"></div>
+
+    <div class="section-label" style="margin-top:2rem">streak history</div>
+    <div class="streak-panel" id="streak-panel"></div>
+  </div>
+
+</div><!-- /.app -->
+
+<div class="toast" id="toast"></div>
+
+<!-- Firebase -->
+<script type="module" src="js/firebase-config.js"></script>
+<script type="module" src="js/app.js"></script>
+<!-- Chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</body>
+</html>
