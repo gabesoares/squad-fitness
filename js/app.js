@@ -12,9 +12,9 @@ import {
 const GOAL = 500;
 
 const MEMBERS = [
-  { id: 'alex',   name: 'Alex',   initials: 'AX', device: 'Android + Garmin',    colorVar: '--yellow' },
-  { id: 'sam',    name: 'Sam',    initials: 'SM', device: 'iPhone + Apple Watch', colorVar: '--teal'   },
-  { id: 'jordan', name: 'Jordan', initials: 'JD', device: 'iPhone + Fitbit',      colorVar: '--purple' },
+  { id: 'erik',   name: 'Erik',   initials: 'ES', device: 'Android + Garmin',    colorVar: '--yellow' },
+  { id: 'sumreen',    name: 'Sumreen',    initials: 'SR', device: 'iPhone + Apple Watch', colorVar: '--teal'   },
+  { id: 'gabe', name: 'Gabe', initials: 'GS', device: 'iPhone + Fitbit',      colorVar: '--purple' },
 ];
 const MEMBER_COLORS = ['var(--yellow)', 'var(--teal)', 'var(--purple)'];
 const MEMBER_BG     = ['#3a2a1a', '#1a3a2a', '#2a1a3a'];
