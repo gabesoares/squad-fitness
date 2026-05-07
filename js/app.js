@@ -129,7 +129,10 @@ async function loadHistory() {
 // ── Log workout ───────────────────────────────────────────────
 window.logWorkout = async function() {
   const who      = parseInt(document.getElementById('log-who').value);
-  const activity = document.getElementById('log-activity').value;
+  const actSelect = document.getElementById('log-activity').value;
+  const activity = actSelect === 'Other'
+    ? (document.getElementById('other-activity').value.trim() || 'Other')
+    : actSelect;
   const mins     = parseInt(document.getElementById('log-mins').value) || 0;
   const dateVal  = document.getElementById('log-date').value;
 
@@ -558,4 +561,8 @@ function initDateInput() {
     renderLeaderboard();
     renderFeed();
   }
+  document.getElementById('log-activity').addEventListener('change', e => {
+  document.getElementById('other-wrap').style.display = e.target.value === 'Other' ? 'block' : 'none';
+  if (e.target.value !== 'Other') document.getElementById('other-activity').value = '';
+  });
 })();
